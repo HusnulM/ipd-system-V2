@@ -1,4 +1,4 @@
-<!-- <META HTTP-EQUIV="Refresh" Content="20; <?= BASEURL; ?>/production/productionview"> -->
+<META HTTP-EQUIV="Refresh" Content="20; <?= BASEURL; ?>/production/productionview">
 
 <div class="content" style="margin-top:60px;">
         <div class="container-fluid">   

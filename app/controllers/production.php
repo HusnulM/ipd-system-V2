@@ -65,6 +65,25 @@ class Production extends Controller {
         echo json_encode($data);
     }
 
+    public function hourlymonitoring(){
+
+        // echo json_encode($_GET);
+        $data['title'] = 'Hourly Production Monitoring';
+        $data['menu']  = 'Hourly Production Monitoring';
+        // $data['rdata'] = $this->model('')->getHourlyMonitoring($_GET);
+
+        $data['lines'] = $this->model('Line_model')->getListProductionLines();
+
+        $this->view('templates/header_a', $data);
+        $this->view('production/hourlymonitoring', $data);
+        $this->view('templates/footer_a');
+    }
+
+    public function gethourlyoutput(){
+        $data = $this->model('Production_model')->getHourlyMonitoring($_POST);
+        echo json_encode($data);
+    }
+
     public function productionview(){
         // 
         // echo json_encode($data);

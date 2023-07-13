@@ -44,6 +44,16 @@ class Production_model{
         return $this->db->single();
     }
 
+    public function getHourlyMonitoring($data){
+        $plandate = $data['plandate'];
+        $prodline = $data['prodline'];
+        $shift    = $data['shift'];
+        // $model    = $data['model'];
+        $this->db->query("SELECT a.*, fGetProdTotalQtyOutput(a.plandate,a.productionline,a.shift,a.model,a.lot_number) as 'outputqty' FROM t_planning_output as a
+            WHERE a.plandate='$plandate' AND a.productionline='$prodline' AND a.shift='$shift'");
+        return $this->db->resultSet();
+    }
+
     public function getPlanningData($data){
         $plandate = $data['plandate'];
         $prodline = $data['prodline'];
