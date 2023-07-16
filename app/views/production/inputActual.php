@@ -62,6 +62,7 @@
                                                 <th>NO.</th>
                                                 <th style="width:300px;">MODEL</th>
                                                 <th style="width:200px;">LOT NUMBER</th>
+                                                <th style="width:200px;">SECTION</th>
                                                 <th style="text-align:right;">PLAN QTY</th>
                                                 <th style="text-align:right;">OUTPUT QTY</th>
                                                 <th></th>
@@ -91,6 +92,7 @@
                                         <thead>
                                             <th>Model</th>
                                             <th>Lot Number</th>
+                                            <th>Section</th>
                                             <th>Planning Quantity</th>
                                             <th>Hourly Time</th>
                                             <th>Output Quantity</th>
@@ -102,6 +104,9 @@
                                                 </td>
                                                 <td>
                                                     <input type="text" name="lot_num" id="displ_lot_num" class="form-control" style="text-align:left;" readonly>
+                                                </td>
+                                                <td>
+                                                <input type="text" name="section" id="displ_section" class="form-control" style="text-align:left;" readonly>
                                                 </td>
                                                 <td>
                                                     <input type="text" name="plan_qty" id="displ_plan_qty" class="form-control" style="text-align:right;" readonly>
@@ -120,7 +125,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="5" style="text-align:right;">
+                                                <td colspan="6" style="text-align:right;">
                                                     <button type="button" class="btn btn-primary" id="btn-save-actual">SAVE</button>
                                                 </td>
                                             </tr>
@@ -202,10 +207,11 @@
                                     <td>`+ count +`</td>
                                     <td>`+ data[i].model +`</td>
                                     <td>`+ data[i].lot_number +`</td>
+                                    <td>`+ data[i].section +`</td>
                                     <td style="text-align:right;">`+ data[i].plan_qty +`</td>
                                     <td style="text-align:right;">`+ data[i].outputqty +`</td>
                                     <td style="text-align:center;">
-                                        <button type="button" class="btn btn-primary btn-sm btnInputActual" data-model="`+ data[i].model +`" data-planqty="`+ data[i].plan_qty +`" data-lotnumber="`+ data[i].lot_number +`">Input Actual Qty</button>
+                                        <button type="button" class="btn btn-primary btn-sm btnInputActual" data-model="`+ data[i].model +`" data-planqty="`+ data[i].plan_qty +`" data-lotnumber="`+ data[i].lot_number +`" data-section="`+ data[i].section +`">Input Actual Qty</button>
                                     </td>
                                 </tr>
                             `);
@@ -217,6 +223,7 @@
                             $('#model_selected').val(_data.model);
                             $('#displ_plan_qty').val(_data.planqty);
                             $('#displ_lot_num').val(_data.lotnumber);
+                            $('#displ_section').val(_data.section);
                             getActualQuantity(_data.model);
                             $('#actualQtyModal').modal('show');
                             // document.getElementById("output_qty").focus();
@@ -296,6 +303,7 @@
                         prodline : $('#prodline').val(),
                         shift: $('#shift').val(),
                         model: _model,
+                        section: $('#displ_section').val(),
                         lot_number: _lotnumber,
                         quantity: _quantity,
                         hourlytime: $('#hourlytime').val()

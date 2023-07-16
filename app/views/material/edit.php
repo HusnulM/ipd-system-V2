@@ -56,6 +56,15 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label for="">Hourly Output Target</label>
+                                                    <input type="number" name="hourlyoutput" id="hourlyoutput" class="form-control" placeholder="Hourly Output Target" value="<?= $data['material']['hourly_target_qty']; ?>" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

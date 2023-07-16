@@ -49,8 +49,18 @@ class Production_model{
         $prodline = $data['prodline'];
         $shift    = $data['shift'];
         // $model    = $data['model'];
-        $this->db->query("SELECT a.*, fGetProdTotalQtyOutput(a.plandate,a.productionline,a.shift,a.model,a.lot_number) as 'outputqty' FROM t_planning_output as a
-            WHERE a.plandate='$plandate' AND a.productionline='$prodline' AND a.shift='$shift'");
+//         SELECT c.id, a.hourly_time, a.model, b.hourly_target_qty as 'target_qty', sum(a.output_qty) as 'output_qty' 
+// FROM t_planning_output as a INNER JOIN t_material as b on a.model = b.matdesc
+// INNER JOIN t_hourly_time as c on a.hourly_time = c.hourly_time
+// GROUP BY c.id, a.hourly_time, a.model, b.hourly_target_qty
+// ORDER BY c.id, a.model asc
+        $this->db->query("SELECT c.id, a.hourly_time, a.model, b.hourly_target_qty as 'target_qty', sum(a.output_qty) as 'output_qty',
+        b.hourly_target_qty - sum(a.output_qty) as 'variance_qty'
+        FROM t_planning_output as a INNER JOIN t_material as b on a.model = b.matdesc
+        INNER JOIN t_hourly_time as c on a.hourly_time = c.hourly_time
+            WHERE a.plandate='$plandate' AND a.productionline='$prodline' AND a.shift='$shift'
+            GROUP BY c.id, a.hourly_time, a.model, b.hourly_target_qty
+            ORDER BY c.id, a.model asc");
         return $this->db->resultSet();
     }
 
@@ -104,6 +114,7 @@ class Production_model{
             "lot_number"     => $data['lot_number'],
             "output_qty"     => $data['quantity'],
             'hourly_time'    => $data['hourlytime'],
+            'section'        => $data['section'],
             "createdon"      => date('Y-m-d'),
             "createdby"      => $_SESSION['usr']['user']
         );
@@ -140,6 +151,7 @@ class Production_model{
                 "partnumber"     => $model[$i],
                 "lot_number"     => $lotnumber[$i],
                 "plan_qty"       => $inputqty,
+                "section"        => $data['section'],
                 "createdon"      => date('Y-m-d'),
                 "createdby"      => $_SESSION['usr']['user']
             );

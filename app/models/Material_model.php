@@ -67,13 +67,14 @@ class Material_model{
     public function  save($data){
         $currentDate = date('Y-m-d h:m:s');
         
-        $query = "INSERT INTO t_material (material,matdesc,matunit,createdon,createdby) 
-                      VALUES(:material,:matdesc,:matunit,:createdon,:createdby)";
+        $query = "INSERT INTO t_material (material,matdesc,matunit,hourly_target_qty,createdon,createdby) 
+                      VALUES(:material,:matdesc,:matunit,:hourly_target_qty,:createdon,:createdby)";
         $this->db->query($query);
         
         $this->db->bind('material',  $data['kodebrg']);
         $this->db->bind('matdesc',   $data['namabrg']);
         $this->db->bind('matunit',   $data['satuan']);
+        $this->db->bind('hourly_target_qty',   $data['hourlyoutput']);
         $this->db->bind('createdon', $currentDate);
         $this->db->bind('createdby', $_SESSION['usr']['user']);
         $this->db->execute();
@@ -107,14 +108,15 @@ class Material_model{
 
     public function  update($data){
       $currentDate = date('Y-m-d h:m:s');
-        $query = "INSERT INTO t_material (material,matdesc,matunit,createdon,createdby) 
-        VALUES(:material,:matdesc,:matunit,:createdon,:createdby)
-              ON DUPLICATE KEY UPDATE matdesc=:matdesc,matunit=:matunit";
+        $query = "INSERT INTO t_material (material,matdesc,matunit,hourly_target_qty,createdon,createdby) 
+        VALUES(:material,:matdesc,:matunit,:hourly_target_qty,:createdon,:createdby)
+              ON DUPLICATE KEY UPDATE matdesc=:matdesc,matunit=:matunit,hourly_target_qty=:hourly_target_qty";
         $this->db->query($query);
         
         $this->db->bind('material',  $data['kodebrg']);
         $this->db->bind('matdesc',   $data['namabrg']);
         $this->db->bind('matunit',   $data['satuan']);
+        $this->db->bind('hourly_target_qty',   $data['hourlyoutput']);
         $this->db->bind('createdon', $currentDate);
         $this->db->bind('createdby', $_SESSION['usr']['user']);
         $this->db->execute();

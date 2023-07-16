@@ -59,7 +59,6 @@
                                             <th>NO.</th>
                                             <th>Time</th>
                                             <th style="width:300px;">Model</th>
-                                            <th>Lot Number</th>
                                             <th style="text-align:right;">Target Output</th>
                                             <th style="text-align:right;">Actual Output</th>
                                             <th style="text-align:right;">Variance</th>
@@ -124,10 +123,9 @@
                                     <td>`+ count +`</td>
                                     <td>`+ data[i].hourly_time +`</td>
                                     <td>`+ data[i].model +`</td>
-                                    <td>`+ data[i].lot_number +`</td>
-                                    <td style="text-align:right;">`+ data[i].outputqty +`</td>
-                                    <td style="text-align:right;">`+ data[i].outputqty +`</td>
-                                    <td></td>
+                                    <td style="text-align:right;">`+ data[i].target_qty +`</td>
+                                    <td style="text-align:right;">`+ data[i].output_qty +`</td>
+                                    <td style="text-align:right;">`+ data[i].variance_qty +`</td>
                                 </tr>
                             `);
                         }

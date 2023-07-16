@@ -27,6 +27,7 @@
                                             <th>Assy Code</th>
                                             <th>Description / Model</th>
                                             <th>Base Unit</th>
+                                            <th>Hourly Target Output</th>
                                             <th style="width:100px;">Action</th>
                                         </tr>
                                     </thead>
@@ -39,6 +40,7 @@
                                                 <td><?= $barang['material']; ?></td>
                                                 <td><?= $barang['matdesc']; ?></td>
                                                 <td><?= $barang['matunit']; ?></td>
+                                                <td><?= $barang['hourly_target_qty']; ?></td>
                                                 <td>
                                                     <a href="<?= BASEURL; ?>/material/edit/data?material=<?= $barang['material']; ?>" type="button" class="btn btn-success">Edit</a>
                                                     <a href="<?= BASEURL; ?>/material/delete/data?material=<?= $barang['material']; ?>" type="button" class="btn btn-danger">Delete</a>

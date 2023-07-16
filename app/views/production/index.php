@@ -18,13 +18,13 @@
                         <div class="body">
                             <form action="<?= BASEURL; ?>/production/save" method="POST">
                                 <div class="row clearfix">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-line">
                                             <label for="">PLAN DATE</label>
                                             <input type="date" name="plandate" class="form-control" value="<?= date('Y-m-d'); ?>">
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-line">
                                             <label for="prodline">Production Line</label>
                                             <select name="prodline" id="prodline" class="form-control" data-live-search="true" required>
@@ -34,12 +34,21 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-line">
                                             <label for="shift">Shift</label>
                                             <select name="shift" id="shift" class="form-control" data-live-search="true" required>
                                                 <option value="1">Day Shift</option>
                                                 <option value="2">Night Shift</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-line">
+                                            <label for="section">Section</label>
+                                            <select name="section" id="section" class="form-control" data-live-search="true" required>
+                                                <option value="SMT">SMT</option>
+                                                <option value="HANDWORK">HANDWORK</option>
                                             </select>
                                         </div>
                                     </div>
