@@ -24,7 +24,7 @@
                                         <input type="date" name="plandate" id="plandate" class="form-control" value="<?= date('Y-m-d'); ?>">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-line">
                                         <label for="prodline">Production Line</label>
                                         <select name="prodline" id="prodline" class="form-control" data-live-search="true" required>
@@ -43,11 +43,14 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <div class="form-line" style="text-align:center;">
                                         <br>
                                         <button type="button" class="btn bg-blue" id="btn-show-data">
                                             <i class="material-icons">search</i>SHOW DATA
+                                        </button>
+                                        <button type="button" class="btn bg-blue" id="btn-monitoring">
+                                            <i class="material-icons">search</i> MONITORING VIEW
                                         </button>
                                     </div>
                                 </div>
@@ -89,6 +92,15 @@
 
         $(function(){
             var count = 0;
+            $('#btn-monitoring').on('click', function(){
+                var _plandate = $('#plandate').val();
+                var _prodline = $('#prodline').val();
+                var _shift    = $('#shift').val();
+                window.open(
+                        base_url+"/production/hourlymonitoringview/data?plandate="+_plandate+"&prodline="+_prodline+"&shift="+_shift,
+                        '_blank' // <- This is what makes it open in a new window.
+                    );
+            });
 
             $('#btn-show-data').on('click', function(){
                 getPlanning();
