@@ -27,7 +27,7 @@
                                             <input type="date" name="plandate" id="plandate" class="form-control" value="<?= date('Y-m-d'); ?>">
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
                                         <div class="form-line">
                                             <label for="prodline">Production Line</label>
                                             <select name="prodline" id="prodline" class="form-control" data-live-search="true" required>
@@ -43,6 +43,15 @@
                                             <select name="shift" id="shift" class="form-control" data-live-search="true" required>
                                                 <option value="1">Day Shift</option>
                                                 <option value="2">Night Shift</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-line">
+                                            <label for="section">Section</label>
+                                            <select name="section" id="section" class="form-control" data-live-search="true" required>
+                                                <option value="SMT">SMT</option>
+                                                <option value="HANDWORK">HANDWORK</option>
                                             </select>
                                         </div>
                                     </div>
@@ -186,7 +195,8 @@
                     data:{
                         plandate : $('#plandate').val(),
                         prodline : $('#prodline').val(),
-                        shift: $('#shift').val()
+                        shift: $('#shift').val(),
+                        section: $('#section').val()
                     },
                     cache:false,
                     success: function(result){

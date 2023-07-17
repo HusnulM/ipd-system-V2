@@ -68,8 +68,9 @@ class Production_model{
         $plandate = $data['plandate'];
         $prodline = $data['prodline'];
         $shift    = $data['shift'];
+        $section  = $data['section'];
 
-        $this->db->query("SELECT a.*, b.description as 'linename', fGetProdTotalQtyOutput(a.plandate,a.productionline,a.shift,a.model,a.lot_number) as 'outputqty' FROM t_planning as a inner join t_production_lines as b on a.productionline = b.id WHERE a.plandate = '$plandate' AND a.productionline = '$prodline' AND a.shift = '$shift'");
+        $this->db->query("SELECT a.*, b.description as 'linename', fGetProdTotalQtyOutput(a.plandate,a.productionline,a.shift,a.model,a.lot_number) as 'outputqty' FROM t_planning as a inner join t_production_lines as b on a.productionline = b.id WHERE a.plandate = '$plandate' AND a.productionline = '$prodline' AND a.shift = '$shift' and a.section='$section'");
 		return $this->db->resultSet();
     }
 
