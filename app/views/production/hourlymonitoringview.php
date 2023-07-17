@@ -1,4 +1,4 @@
-<META HTTP-EQUIV="Refresh" Content="20; <?= BASEURL; ?>/production/hourlymonitoringview/data?plandate=2023-07-16&prodline=6&shift=1">
+<META HTTP-EQUIV="Refresh" Content="20; <?= BASEURL; ?>/production/hourlymonitoringview/data?plandate=<?= $data['plandate']; ?>&prodline=<?= $data['prodline']; ?>&shift=<?= $data['shift']; ?>">
 
 <div class="content" style="margin-top:60px;">
     <div class="container-fluid">   
