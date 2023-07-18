@@ -26,12 +26,14 @@ class Production_model{
     }
 
     public function planningMonitoringDay1(){
-        $this->db->query("CALL sp_ProductionView1()");
+        //$this->db->query("CALL sp_ProductionView1()");
+        $this->db->query("CALL sp_ProductionD1()");
         return $this->db->resultSet();
     }
 
     public function planningMonitoringDay2(){
-        $this->db->query("CALL sp_ProductionView2()");
+        // $this->db->query("CALL sp_ProductionView2()");
+        $this->db->query("CALL sp_ProductionD2()");
         return $this->db->resultSet();
     }
 
