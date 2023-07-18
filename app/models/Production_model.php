@@ -9,8 +9,19 @@ class Production_model{
 		$this->db = new Database;
     }
 
+    public function getServerTime(){
+        $this->db->query("SELECT TIME_FORMAT(now(), '%T') as 'servertime'");
+        return $this->db->single();
+    }
+
+    public function getServerHour(){
+        $this->db->query("SELECT HOUR(TIME_FORMAT(now(), '%T')) as 'serverhour'");
+        return $this->db->single();
+    }
+
     public function planningMonitoring(){
-        $this->db->query("CALL sp_ProductionView()");
+        // $this->db->query("CALL sp_ProductionView()");
+        $this->db->query("CALL sp_GetPlanning()");
         return $this->db->resultSet();
     }
 
