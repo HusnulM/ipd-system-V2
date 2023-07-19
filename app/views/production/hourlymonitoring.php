@@ -97,7 +97,9 @@
                 var _prodline = $('#prodline').val();
                 var _shift    = $('#shift').val();
                 window.open(
-                        base_url+"/production/hourlymonitoringview/data?plandate="+_plandate+"&prodline="+_prodline+"&shift="+_shift,
+                        // base_url+"/production/hourlymonitoringview/data?plandate="+_plandate+"&prodline="+_prodline+"&shift="+_shift,
+                        // '_blank' // <- This is what makes it open in a new window.
+                        base_url+"/production/hourlymonitoringview/data?viewall=Y",
                         '_blank' // <- This is what makes it open in a new window.
                     );
             });

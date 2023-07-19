@@ -68,9 +68,10 @@ class Production extends Controller {
     public function hourlymonitoringview($params){
         $url  = parse_url($_SERVER['REQUEST_URI']);
         $data = parse_str($url['query'], $params);
-        $plandate = $params['plandate'];
-        $prodline = $params['prodline'];
-        $shift    = $params['shift'];
+        // $plandate = $params['plandate'];
+        // $prodline = $params['prodline'];
+        // $shift    = $params['shift'];
+        $plandate = date('Y-m-d');
 
         $data['title'] = 'Hourly Production Monitoring';
         $data['menu']  = 'Hourly Production Monitoring';
@@ -79,10 +80,18 @@ class Production extends Controller {
         // $data['menu']  = 'Hourly Production Monitoring';
         // // $data['rdata'] = $this->model('')->getHourlyMonitoring($_GET);
 
-        // $data['lines'] = $this->model('Line_model')->getListProductionLines();
-        $data['rdata']    = $this->model('Production_model')->getHourlyMonitoringView($plandate, $prodline, $shift);
+        $data['chour'] = $this->model('Production_model')->getServerHour();
+
+        if($data['chour']['serverhour'] >= 6 && $data['chour']['serverhour'] <= 18){
+            $shift = 1;
+        }else{
+            $shift = 2;
+        }
+
+        $data['lines']    = $this->model('Line_model')->getListProductionLines();
+        $data['rdata']    = $this->model('Production_model')->getHourlyMonitoringViewV2($plandate, $shift);
         $data['plandate'] = $plandate;
-        $data['prodline'] = $prodline;
+        // $data['prodline'] = $prodline;
         $data['shift']    = $shift;
 
         $this->view('templates/header_a', $data);
@@ -118,14 +127,15 @@ class Production extends Controller {
             $data['rdata'] = $this->model('Production_model')->planningMonitoring();
             $data['rday1'] = $this->model('Production_model')->planningMonitoringDay1();
             $data['rday2'] = $this->model('Production_model')->planningMonitoringDay2();
-            // $data['rday3'] = $this->model('Production_model')->planningMonitoringDay3();
+            // echo json_encode($data['rday2']);
+            $data['rday3'] = $this->model('Production_model')->planningMonitoringDay3();
             $data['hdata'] = $this->model('Production_model')->planningMonitoringDate();
 
             $data['ctime'] = $this->model('Production_model')->getServerTime();
             $data['chour'] = $this->model('Production_model')->getServerHour();
             // echo json_encode($data);
             $this->view('templates/header_a', $data);
-            $this->view('production/productionviewV2', $data);
+            $this->view('production/productionviewV3', $data);
             $this->view('templates/footer_a');
     }
 

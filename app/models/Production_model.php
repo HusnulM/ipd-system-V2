@@ -68,6 +68,17 @@ class Production_model{
         return $this->db->resultSet();
     }
 
+    public function getHourlyMonitoringViewV2($plandate, $shift){
+        $this->db->query("SELECT c.id, a.hourly_time, a.productionline, a.model, b.hourly_target_qty as 'target_qty', sum(a.output_qty) as 'output_qty',
+        sum(a.output_qty) - b.hourly_target_qty as 'variance_qty'
+        FROM t_planning_output as a INNER JOIN t_material as b on a.model = b.matdesc
+        INNER JOIN t_hourly_time as c on a.hourly_time = c.hourly_time
+            WHERE a.plandate='$plandate' AND a.shift='$shift'
+            GROUP BY c.id, a.hourly_time, a.productionline, a.model, b.hourly_target_qty
+            ORDER BY c.id, a.productionline, a.model asc");
+        return $this->db->resultSet();
+    }
+
     public function getHourlyMonitoring($data){
         $plandate = $data['plandate'];
         $prodline = $data['prodline'];
