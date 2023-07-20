@@ -17,7 +17,7 @@
                             <div class="body">
                                 <?php 
                                     $dayShift   = '10:00:00';
-                                    $nightShift = '19:00:00';
+                                    $nightShift = '23:00:00';
                                 ?>
                                 
                                 <div class="row">                   
