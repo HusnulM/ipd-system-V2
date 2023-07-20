@@ -58,6 +58,14 @@ class Production_model{
         return $this->db->single();
     }
 
+    public function getListProductionLines($plandate, $shift){
+        $this->db->query("SELECT a.* FROM t_production_lines as a
+        INNER JOIN t_planning_output as b on a.id = b.productionline 
+        WHERE b.plandate='$plandate' AND b.shift='$shift'
+        order by a.id asc");
+		return $this->db->resultSet();
+    }
+
     public function getHourlyMonitoringView($plandate, $prodline, $shift){
         $this->db->query("SELECT c.id, a.hourly_time, a.model, b.hourly_target_qty as 'target_qty', sum(a.output_qty) as 'output_qty',
         b.hourly_target_qty - sum(a.output_qty) as 'variance_qty'

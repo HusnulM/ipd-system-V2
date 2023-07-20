@@ -1,5 +1,5 @@
-<META HTTP-EQUIV="Refresh" Content="40; <?= BASEURL; ?>/production/hourlymonitoringview/data?plandate=<?= $data['plandate']; ?>&prodline=<?= $data['prodline']; ?>&shift=<?= $data['shift']; ?>">
-
+<!-- <META HTTP-EQUIV="Refresh" Content="40; <?= BASEURL; ?>/production/hourlymonitoringview/data?plandate=<?= $data['plandate']; ?>&prodline=<?= $data['prodline']; ?>&shift=<?= $data['shift']; ?>"> -->
+<META HTTP-EQUIV="Refresh" Content="20; <?= BASEURL; ?>/production/hourlymonitoringview/data?viewall=Y">
 <div class="content" style="margin-top:60px;">
     <div class="container-fluid">   
         <div id="msg-alert">

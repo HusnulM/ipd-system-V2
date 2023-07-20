@@ -88,7 +88,8 @@ class Production extends Controller {
             $shift = 2;
         }
 
-        $data['lines']    = $this->model('Line_model')->getListProductionLines();
+        // $data['lines']    = $this->model('Line_model')->getListProductionLines();
+        $data['lines']    = $this->model('Production_model')->getListProductionLines($plandate, $shift);
         $data['rdata']    = $this->model('Production_model')->getHourlyMonitoringViewV2($plandate, $shift);
         $data['plandate'] = $plandate;
         // $data['prodline'] = $prodline;
