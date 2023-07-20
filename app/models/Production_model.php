@@ -59,7 +59,7 @@ class Production_model{
     }
 
     public function getListProductionLines($plandate, $shift){
-        $this->db->query("SELECT a.* FROM t_production_lines as a
+        $this->db->query("SELECT distinct a.* FROM t_production_lines as a
         INNER JOIN t_planning_output as b on a.id = b.productionline 
         WHERE b.plandate='$plandate' AND b.shift='$shift'
         order by a.id asc");
