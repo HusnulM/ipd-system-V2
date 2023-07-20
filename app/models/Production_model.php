@@ -43,7 +43,8 @@ class Production_model{
     }
 
     public function planningMonitoringDate(){
-        $this->db->query("CALL sp_ProductionViewDate()");
+        // $this->db->query("CALL sp_ProductionViewDate()");
+        $this->db->query("CALL sp_ProductionDate()");
         return $this->db->single();
     }
 
